@@ -97,7 +97,7 @@ function html() {
 	addMoves.mousePressed(addMove);
 	subGen.mousePressed(minusGen);
 	addGen.mousePressed(plusGen);
-	disclaimer = createP("This page uses JavaScript Web Mining. Just so you know.);
+	disclaimer = createP("This page uses JavaScript Web Mining. Just so you know.");
 	disclaimer.style('position', 'absolute');
 	disclaimer.style('bottom', '5px');
 	disclaimer.style('font-size', '10px');
