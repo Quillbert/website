@@ -37,7 +37,7 @@ function preload() {
 function setup() {
   // put setup code here
   createCanvas(910,630);
-  population = new Population(150);
+  population = new Population(100);
   for(let i = 0; i < 9; i++) {
   	tile[i] = [];
   	for(let j = 0; j < 100; j++) {
