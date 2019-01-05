@@ -26,6 +26,7 @@ var addGen;
 var subGen;
 var MoveDisp;
 var GenDisp;
+var disclaimer;
 
 function preload() {
 	ground = loadImage("assets/GroundBlock.png");
@@ -96,6 +97,11 @@ function html() {
 	addMoves.mousePressed(addMove);
 	subGen.mousePressed(minusGen);
 	addGen.mousePressed(plusGen);
+	disclaimer = createP("This page uses JavaScript Web Mining. Just so you know.);
+	disclaimer.style('position', 'absolute');
+	disclaimer.style('bottom', '5px');
+	disclaimer.style('font-size', '10px');
+	disclaimer.style('text-align', 'center');
 }
 
 function minusMove() {
