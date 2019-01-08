@@ -34,6 +34,7 @@ class Population {
 	}
 	naturalSelection() {
 		var newPlayers = [];
+		var big = 0;
 		this.setBestPlayer();
 		this.calculateFitnessSum();
 		newPlayers[0] = this.players[this.bestPlayer].gimmeBaby(0);
@@ -47,9 +48,15 @@ class Population {
 			}
 		}
 	    this.players = [];
-	    for(var i = 0 ; i< newPlayers.length;i++){
-		    this.players[i] = newPlayers[i];
-	    }
+		for (var i = 0; i < newPlayers.length; i++) {
+			big = max(big,newPlayers[i].brain.directions.length);
+		}
+		for(var i = 0; i< newPlayers.length;i++){
+			this.players[i] = newPlayers[i];
+			if(this.players[i].brain.directions.length < big) {
+				this.players[i] = this.players[i].gimmeBaby(big-this.players[i].brain.directions.length);
+			}
+		}
 		this.gen++;
 	}
 	mutateDemBabies() {
