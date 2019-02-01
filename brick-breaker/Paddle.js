@@ -10,10 +10,10 @@ class Paddle extends Actor {
 		this.velocity = 3.5;
 	}
 	controls() {
-		if(keyIsDown(RIGHT_ARROW)) {
+		if(keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
 			this.x += this.velocity;
 		}
-		if(keyIsDown(LEFT_ARROW)) {
+		if(keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
 			this.x -= this.velocity;
 		}
 		this.x = constrain(this.x, 0, width - this.wid);
