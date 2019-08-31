@@ -97,7 +97,6 @@ function html() {
 	addMoves.mousePressed(addMove);
 	subGen.mousePressed(minusGen);
 	addGen.mousePressed(plusGen);
-	disclaimer = createP("This page uses JavaScript Web Mining. Just so you know.");
 }
 
 function minusMove() {
