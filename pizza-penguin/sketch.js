@@ -18,7 +18,8 @@ function preload() {
 
 function setup() {
   // put setup code here
-  createCanvas(windowWidth,windowHeight);
+  var canvas = createCanvas(windowWidth,windowHeight);
+  canvas.parent('sketch');
   penguin = new Penguin(100, height/2);
   for(let i = 0; i < height/5; i++) {
   	waves[i] = new Wave();
@@ -115,3 +116,10 @@ function keyTyped() {
     text("INSTRUCTIONS: Use the arrow keys to move the penguin." + '\n' + "Eat the Pizzas and avoid the sharks.",width/2,60);
     pop();
   }
+
+window.addEventListener("keydown", function(e) {
+    // space and arrow keys
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);
