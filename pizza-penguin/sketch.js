@@ -18,9 +18,9 @@ function preload() {
 
 function setup() {
   // put setup code here
-  createCanvas(1100,680);
+  createCanvas(windowWidth,windowHeight);
   penguin = new Penguin(100, height/2);
-  for(let i = 0; i < height/2; i++) {
+  for(let i = 0; i < height/5; i++) {
   	waves[i] = new Wave();
   }
   for(let i = 0; i < 3; i++) {
@@ -28,6 +28,10 @@ function setup() {
   }
   sharks.push(new Shark());
   music.loop();
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
