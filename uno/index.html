@@ -46,8 +46,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
 	<script type="text/javascript">
 		var n;
-		//var socket = io.connect("https://uno-multiplayer.herokuapp.com");
-		var socket = io.connect("localhost:3000");
+		var socket = io.connect("https://uno-multiplayer.herokuapp.com");
+		//var socket = io.connect("localhost:3000");
 		socket.emit('games', "hi");
 		setInterval(function() {
 			socket.emit('games', "hi");
