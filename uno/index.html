@@ -82,7 +82,7 @@
 			const grid = document.getElementById("grid");
 			grid.innerHTML = "";
 			console.log(data);
-			for(let i = 1; i < data.length; i++) {
+			for(let i = 1; i < data.length; i+=2) {
 				var link = document.createElement("a");
 				link.setAttribute("href", "https://uno-multiplayer.herokuapp.com/?game=" + data[i]);
 				link.innerHTML = data[i];
