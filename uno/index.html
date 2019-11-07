@@ -4,30 +4,121 @@
 	<meta charset="utf-8">
 	<title>Multiplayer Uno Game</title>
 	<style type="text/css">
+		body {
+			background: rgb(200, 0, 0);
+		}
 		h1 {
 			text-align: center;
 		}
 		.centered {
-		    position: fixed;
+		    position: absolute;
 		    top: 50%;
 		    left: 50%;
 		    transform: translate(-50%, -50%);
 		}
+		.table {
+			text-align: center;
+			background: white;
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			border: 1px solid black;
+			max-height: 60%;
+			height: 60%;
+			width: 300px;
+			max-width: 20%;
+			overflow: auto;
+		}
+		.host {
+			text-align: center;
+			background: white;
+			position: absolute;
+			bottom: 10px;
+			left: 10px;
+			border: 1px solid black;
+			max-height: 60%;
+			height: 60%;
+			width: 300px;
+			max-width: 20%;
+			overflow: auto;
+		}
 	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
 	<script type="text/javascript">
+		var n;
+		//var socket = io.connect("https://uno-multiplayer.herokuapp.com");
+		var socket = io.connect("localhost:3000");
+		socket.emit('games', "hi");
+		setInterval(function() {
+			socket.emit('games', "hi");
+		}, 10000);
 		function join() {
 			var name = document.getElementById("box").value;
 			window.location.replace("https://uno-multiplayer.herokuapp.com/?game=" + name);
 		}
+		function host() {
+			var box = document.getElementById("host-box")
+			var name = box.value;
+			n = name;
+			var public = document.getElementById("public");
+				var data = {
+					name: name,
+					public: public.checked
+				}
+			socket.emit('try', data);
+			box.value = "";
+		}
+		function key() {
+			if(event.key === 'Enter') {
+				join();
+			}
+		}
+		function hostKey() {
+			if(event.key === 'Enter') {
+				host();
+			}
+		}
+		socket.on('games', function(data) {
+			const grid = document.getElementById("grid");
+			grid.innerHTML = "";
+			console.log(data);
+			for(let i = 0; i < data.length; i++) {
+				var link = document.createElement("a");
+				link.setAttribute("href", "https://uno-multiplayer.herokuapp.com/?game=" + data[i]);
+				link.innerHTML = data[i];
+				grid.appendChild(link);
+				grid.appendChild(document.createElement('br'));
+			}
+		});
+		socket.on('confirm', function(data) {
+			if(data) {
+				window.location.replace("https://uno-multiplayer.herokuapp.com/?game=" + n);
+			} else {
+				window.alert("This name is taken. Please try a different name.");
+			}
+		});
 	</script>
 </head>
 <body>
 	<h1>Multiplayer Uno</h1>
 	<div class="centered">
 		<br>
-		<label>Enter Game Name: </label>
-		<input type="text" name="game" id="box">
+		<label>Enter Game Code: </label>
+		<input type="text" name="game" id="box" style="border: 1px dotted black;" onkeydown="key()">
 		<input type="submit" name="join" onclick="join()" value="Join Game">
+	</div>
+	<div class="table">
+		<p><u><strong>Public Games</strong></u></p>
+		<div class="grid" id="grid"></div>
+	</div>
+	<div class="host">
+		<p><u><strong>Host Game</strong></u></p>
+		<label>Name Your Game: </label>
+		<input type="text" name="host-box" id="host-box" onkeypress="hostKey()">
+		<br>
+		<label for="public"><input type="checkbox" name="public" id="public">Public</label>
+		<br>
+		<input type="submit" name="host" onclick="host()" value="Host Game">
 	</div>
 </body>
 </html>
