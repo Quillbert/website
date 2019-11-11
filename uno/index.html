@@ -104,7 +104,7 @@
 	<div class="centered">
 		<br>
 		<label>Enter Game Code: </label>
-		<input type="text" name="game" id="box" style="border: 1px dotted black;" onkeydown="key()">
+		<input type="text" name="game" id="box" style="border: 1px dotted black;" onkeydown="key()" pattern="[^A-Za-z0-9]">
 		<input type="submit" name="join" onclick="join()" value="Join Game">
 	</div>
 	<div class="table">
@@ -114,7 +114,7 @@
 	<div class="host">
 		<p><u><strong>Host Game</strong></u></p>
 		<label>Name Your Game: </label>
-		<input type="text" name="host-box" id="host-box" onkeypress="hostKey()">
+		<input type="text" name="host-box" id="host-box" onkeypress="hostKey()" pattern="[^A-Za-z0-9]">
 		<br>
 		<label for="public"><input type="checkbox" name="public" id="public">Public</label>
 		<br>
