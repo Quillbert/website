@@ -54,11 +54,13 @@
 		}, 10000);
 		function join() {
 			var name = document.getElementById("box").value;
-			window.location.replace("https://uno-multiplayer.herokuapp.com/?game=" + encodeURI(name));
+			var name = name.replace(/[^a-zA-Z0-9 ]/g, "");
+			window.location.replace("https://uno-multiplayer.herokuapp.com/?game=" + name);
 		}
 		function host() {
 			var box = document.getElementById("host-box")
-			var name = encodeURI(box.value);
+			var name = box.value;
+			var name = name.replace(/[^a-zA-Z0-9 ]/g, "");
 			n = name;
 			var public = document.getElementById("public");
 				var data = {
@@ -85,14 +87,14 @@
 			for(let i = 0; i < data.length; i++) {
 				var link = document.createElement("a");
 				link.setAttribute("href", "https://uno-multiplayer.herokuapp.com/?game=" + data[i]);
-				link.innerHTML = decodeURI(data[i]);
+				link.innerHTML = data[i];
 				grid.appendChild(link);
 				grid.appendChild(document.createElement('br'));
 			}
 		});
 		socket.on('confirm', function(data) {
 			if(data) {
-				window.location.replace("https://uno-multiplayer.herokuapp.com/?game=" + encodeURI(n));
+				window.location.replace("https://uno-multiplayer.herokuapp.com/?game=" + n);
 			} else {
 				window.alert("This name is taken. Please try a different name.");
 			}
