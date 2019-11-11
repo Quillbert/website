@@ -92,7 +92,7 @@
 		});
 		socket.on('confirm', function(data) {
 			if(data) {
-				window.location.replace("https://uno-multiplayer.herokuapp.com/?game=" + n);
+				window.location.replace("https://uno-multiplayer.herokuapp.com/?game=" + encodeURI(n));
 			} else {
 				window.alert("This name is taken. Please try a different name.");
 			}
