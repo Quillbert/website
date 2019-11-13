@@ -54,13 +54,13 @@
 		}, 10000);
 		function join() {
 			var name = document.getElementById("box").value;
-			var name = name.replace(/[^a-zA-Z0-9 ]/g, "");
+			var name = name.replace(/[^a-zA-Z0-9]/g, "");
 			window.location.replace("https://uno-multiplayer.herokuapp.com/?game=" + name);
 		}
 		function host() {
 			var box = document.getElementById("host-box")
 			var name = box.value;
-			var name = name.replace(/[^a-zA-Z0-9 ]/g, "");
+			var name = name.replace(/[^a-zA-Z0-9]/g, "");
 			n = name;
 			var public = document.getElementById("public");
 				var data = {
