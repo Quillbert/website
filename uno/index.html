@@ -63,9 +63,11 @@
 			var name = name.replace(/[^a-zA-Z0-9]/g, "");
 			n = name;
 			var public = document.getElementById("public");
+			var stacking = document.getElementById("stacking");
 				var data = {
 					name: name,
-					public: public.checked
+					public: public.checked,
+					stacking: stacking.checked
 				}
 			socket.emit('try', data);
 			box.value = "";
@@ -119,6 +121,8 @@
 		<input type="text" name="host-box" id="host-box" onkeypress="hostKey()">
 		<br>
 		<label for="public"><input type="checkbox" name="public" id="public">Public</label>
+		<br>
+		<label for="stacking"><input type="checkbox" name="stacking" id="stacking">Stacking</label>
 		<br>
 		<input type="submit" name="host" onclick="host()" value="Host Game">
 	</div>
