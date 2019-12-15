@@ -98,7 +98,9 @@
 			console.log(data);
 			for(let i = 0; i < data.length; i++) {
 				var link = document.createElement("a");
-				link.setAttribute("href", "https://uno-multiplayer.herokuapp.com/?game=" + data[i]);
+				var cut = data[i].indexOf('[');
+				var gameName = data[i].substring(0,cut);
+				link.setAttribute("href", "https://uno-multiplayer.herokuapp.com/?game=" + gameName);
 				link.innerHTML = data[i];
 				grid.appendChild(link);
 				grid.appendChild(document.createElement('br'));
