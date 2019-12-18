@@ -7,7 +7,7 @@ class Paddle extends Actor {
 		this.hei = 15;
 		this.xc = x;
 		this.yc = y;
-		this.velocity = 3.5;
+		this.velocity = 7;
 	}
 	controls() {
 		if(keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
