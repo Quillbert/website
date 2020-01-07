@@ -74,10 +74,12 @@
 			n = name;
 			var public = document.getElementById("public");
 			var stacking = document.getElementById("stacking");
+			var forcePlay = document.getElementById("forcePlay");
 				var data = {
 					name: name,
 					public: public.checked,
-					stacking: stacking.checked
+					stacking: stacking.checked,
+					forcePlay: forcePlay.checked
 				}
 			socket.emit('try', data);
 			box.value = "";
@@ -135,6 +137,8 @@
 		<label for="public"><input type="checkbox" name="public" id="public">Public</label>
 		<br>
 		<label for="stacking"><input type="checkbox" name="stacking" id="stacking">Stacking</label>
+		<br>
+		<label for="forcePlay"><input type="checkbox" name="forcePlay" id="forcePlay">Force Play</label>
 		<br>
 		<input type="submit" name="host" onclick="host()" value="Host Game">
 	</div>
