@@ -66,7 +66,7 @@ function saveSim() {
 
 function handleFile(file) {
   console.log("Called");
-  if(file.name == "NaturalSelectionSimulatorSave.txt") {
+  try {
     saveData = split(file.data, '\n');
     finders = [];
     for(let i = 0; i < saveData.length; i++) {
@@ -90,7 +90,7 @@ function handleFile(file) {
     for(let i = 0; i < 40; i++) {
       food.push(new Food());
     }
-  } else {
+  } catch(e) {
     window.alert("Not a valid save file.");
   }
 }
