@@ -30,12 +30,6 @@ class Finder {
 				this.dead = true;
 			}
 			this.breed();
-			for(let i = 0; i < finders.length; i++) {
-				if(dist(this.x,this.y,finders[i].x,finders[i].y) < 10 && finders[i] != this) {
-					this.course = random(360);
-					this.breedTimer = 75;
-				}
-			}
 		} else {
 			this.move();
 		}
