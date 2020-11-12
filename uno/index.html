@@ -102,6 +102,9 @@
 				var link = document.createElement("a");
 				var cut = data[i].indexOf('[');
 				var gameName = data[i].substring(0,cut);
+				if(cut < 0) {
+					gameName = data[i];
+				}
 				link.setAttribute("href", "https://uno-multiplayer.herokuapp.com/?game=" + gameName);
 				link.innerHTML = data[i];
 				grid.appendChild(link);
