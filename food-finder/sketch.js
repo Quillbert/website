@@ -9,20 +9,27 @@ var input;
 var saveButton;
 var saveData;
 
+var showStats = false;
+
 function setup() {
   // put setup code here
-  createCanvas(600, 600);
+  let canvas = createCanvas(600, 600);
+  canvas.parent('sketch');
   for(let i = 0; i < 40; i++) {
   	food.push(new Food());
   }
   for(let i = 0; i < 5; i++) {
   	finders.push(new Finder(random(width), random(height)));
   }
-  createElement('br');
+  let br = createElement('br');
+  br.parent('sketch');
   saveButton = createButton('Save Simulation');
   saveButton.mousePressed(saveSim);
-  createElement('label',  " Load Save: ");
+  saveButton.parent('sketch');
+  let label = createElement('label',  " Load Save: ");
+  label.parent('sketch');
   input = createFileInput(handleFile);
+  input.parent('sketch');
 }
 
 function draw() {
@@ -44,6 +51,13 @@ function draw() {
     if(finders[i].dead) {
       finders.splice(i, 1)
     }
+  }
+  showInfo();
+}
+
+function keyPressed() {
+  if(key == 's') {
+    showStats = !showStats;
   }
 }
 
@@ -94,3 +108,73 @@ function handleFile(file) {
     window.alert("Not a valid save file.");
   }
 }
+
+function showInfo() {
+  let string = "Press \'s\' to show stats.";
+  if(showStats) {
+    fill(0);
+    textAlign(LEFT, TOP);
+    textSize(15);
+    text("Statistics:", 5, 5);
+    text("Average vision range: " + averageViewDistance(), 5, 20);
+    text("Average speed: " + averageSpeed(), 5, 35);
+    text("Average eat reach: " + averageEatDistance(), 5, 50);
+    text("Average breed reach: " + averageBreedDistance(), 5, 65);
+    text("Average minimum breeding energy: " + averageBreedAllowance(), 5, 80);
+    text("Average energy given to children: " + averageEnergyGiven(), 5, 95);
+    string = "Press \'s\' to hide stats.";
+  }
+  textAlign(RIGHT, BOTTOM);
+  fill(0);
+  textSize(15);
+  text(string, width-5, height-5);
+}
+
+function averageViewDistance() {
+  let total = 0;
+  for(let i = 0; i < finders.length; i++) {
+    total += finders[i].detectionRadius;
+  }
+  return total/finders.length;
+}
+
+function averageSpeed() {
+  let total = 0;
+  for(let i = 0; i < finders.length; i++) {
+    total += finders[i].vel;
+  }
+  return total/finders.length;
+}
+
+function averageEatDistance() {
+  let total = 0;
+  for(let i = 0; i < finders.length; i++) {
+    total += finders[i].eatRadius;
+  }
+  return total/finders.length;
+}
+
+function averageBreedDistance() {
+  let total = 0;
+  for(let i = 0; i < finders.length; i++) {
+    total += finders[i].breedDistance;
+  }
+  return total/finders.length;
+}
+
+function averageBreedAllowance() {
+  let total = 0;
+  for(let i = 0; i < finders.length; i++) {
+    total += finders[i].breedAllowance;
+  }
+  return total/finders.length;
+}
+
+function averageEnergyGiven() {
+  let total = 0;
+  for(let i = 0; i < finders.length; i++) {
+    total += finders[i].energyGiven;
+  }
+  return total/finders.length;
+}
+
