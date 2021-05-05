@@ -8,6 +8,7 @@ class Player {
 		this.velocity = 4;
 		this.x = x;
 		this.y = y;
+		this.farthestX = x;
 		this.hitBox = new Collider(70,70);
 		this.hitBox.update(x,y);
 		this.brain = new Brain(5);
@@ -38,6 +39,9 @@ class Player {
 		}
 		if(this.controls[0] == 1) {
 			this.x += this.velocity;
+			if(this.x > this.farthestX) {
+				this.farthestX = this.x;	
+			}
 		}
 		if(this.controls[2] == 1) {
 			if(this.velocity < 8) {
@@ -84,7 +88,7 @@ class Player {
 		}
 	}
 	calculateFitness() {
-		this.fitness = this.x * abs(this.x);
+		this.fitness = this.x * abs(this.x) + this.farthestX;
 	}
 	gimmeBaby(add) {
 		var baby = new Player(10,500);
