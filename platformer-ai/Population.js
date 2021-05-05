@@ -60,7 +60,7 @@ class Population {
 		this.gen++;
 	}
 	mutateDemBabies() {
-		for(let i = 0; i < this.players.length; i++) {
+		for(let i = 1; i < this.players.length; i++) {
 			this.players[i].brain.mutate();
 		}
 	}
