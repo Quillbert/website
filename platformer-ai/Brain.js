@@ -20,7 +20,7 @@ class Brain {
 			clone.directions[i][1] = this.directions[i][1];
 			clone.directions[i][2] = this.directions[i][2];
 		}
-		for (let i = 0; i < add; i++) {
+		for (let i = this.directions.length; i < this.directions.length+add; i++) {
 			clone.directions[i][0] = floor(random(-1,2));
 			clone.directions[i][1] = floor(random(0,2));
 			clone.directions[i][2] = floor(random(0,2));
